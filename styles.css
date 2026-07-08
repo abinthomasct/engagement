@@ -129,8 +129,8 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__photo {
-  margin: -10px auto 0;
-  max-width: 460px;
+  margin: 4px auto 0;
+  max-width: 500px;
   padding: 0;
   background: none;
   border: 0;
@@ -138,11 +138,11 @@ img { max-width: 100%; display: block; }
 }
 .hero__photo img {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: contain;
-  /* Feather the edges so the illustration blends into the page */
-  -webkit-mask-image: radial-gradient(ellipse 78% 82% at 50% 46%, #000 58%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(ellipse 78% 82% at 50% 46%, #000 58%, rgba(0, 0, 0, 0) 100%);
+  height: auto;
+  /* Transparent cutout of just the couple; soften the lower crop so
+     it melts into the page instead of ending on a hard edge. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, #000 84%, rgba(0, 0, 0, 0) 100%);
 }
 
 .hero__scroll {

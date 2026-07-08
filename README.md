@@ -18,7 +18,9 @@ An elegant single-page invitation for the engagement of **Abin Thomas C T** and 
 - `index.html` — page content
 - `styles.css` — theme and layout
 - `script.js` — countdown timer, scroll animations, floating petals
-- `couple-illustration.png` — Ghibli-style hero illustration of the couple
+- `couple-hero.png` — transparent cut-out illustration of the couple (hero)
+- `couple-illustration.png`, `couple-illustration-2.png` — alternate generated illustrations
+- `edited.jpeg` — source illustration used to create the hero cut-out
 - `photo1–4.jpeg` — couple photos (photo2–4 used in the gallery)
 - `.nojekyll` — serves the files as-is (no Jekyll processing)
 
