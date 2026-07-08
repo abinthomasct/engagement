@@ -6,6 +6,8 @@
   --ivory: #fbf6ef;
   --ivory-warm: #f3e9dc;
   --sage: #7c8a6a;
+  --rose: #d38ea0;
+  --rose-soft: #e7b3bf;
   --ink: #3a2a2e;
   --shadow: rgba(64, 18, 30, 0.16);
 
@@ -344,7 +346,7 @@ img { max-width: 100%; display: block; }
   margin: 12px 0 0;
 }
 
-/* ===== Floating petals ===== */
+/* ===== Floating hearts ===== */
 .petals {
   position: fixed;
   inset: 0;
@@ -355,20 +357,68 @@ img { max-width: 100%; display: block; }
 .petals span {
   position: absolute;
   top: -8%;
-  width: 10px;
-  height: 10px;
-  background: var(--gold-soft);
-  border-radius: 60% 0 60% 0;
+  width: 12px;
+  height: 12px;
+  background: var(--rose, #d38ea0);
   opacity: 0.55;
+  /* Heart glyph via mask so the falling element is shaped like a heart. */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'%3E%3Cpath d='M16 29.6C16 29.6 0 19.2 0 8.8 0 3.9 3.9 0 8.8 0 12 0 14.7 1.7 16 4.3 17.3 1.7 20 0 23.2 0 28.1 0 32 3.9 32 8.8 32 19.2 16 29.6 16 29.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'%3E%3Cpath d='M16 29.6C16 29.6 0 19.2 0 8.8 0 3.9 3.9 0 8.8 0 12 0 14.7 1.7 16 4.3 17.3 1.7 20 0 23.2 0 28.1 0 32 3.9 32 8.8 32 19.2 16 29.6 16 29.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
   animation: fall linear infinite;
 }
 @keyframes fall {
-  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.6; }
-  100% { transform: translateY(110vh) rotate(420deg); opacity: 0; }
+  0% { transform: translateY(-10vh) rotate(-12deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  50% { transform: translateY(50vh) rotate(8deg); }
+  100% { transform: translateY(110vh) rotate(-6deg); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .petals { display: none; }
+}
+
+/* ===== Music toggle ===== */
+.music-toggle {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 40;
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 162, 75, 0.55);
+  background: rgba(251, 246, 239, 0.82);
+  color: var(--wine);
+  box-shadow: 0 6px 18px var(--shadow);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+.music-toggle:hover {
+  transform: translateY(-2px);
+  color: var(--gold);
+}
+.music-toggle:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.music-toggle svg { display: none; }
+.music-toggle .music-toggle__off { display: block; }
+.music-toggle.is-playing .music-toggle__off { display: none; }
+.music-toggle.is-playing .music-toggle__on { display: block; }
+/* Gentle pulse while music plays */
+.music-toggle.is-playing {
+  animation: musicPulse 2.4s ease-in-out infinite;
+}
+@keyframes musicPulse {
+  0%, 100% { box-shadow: 0 6px 18px var(--shadow); }
+  50% { box-shadow: 0 6px 22px rgba(201, 162, 75, 0.5); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .music-toggle.is-playing { animation: none; }
 }
 
 /* ===== Responsive ===== */

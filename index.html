@@ -14,8 +14,26 @@
 </head>
 <body>
 
-  <!-- Decorative floating petals -->
+  <!-- Decorative floating hearts -->
   <div class="petals" aria-hidden="true"></div>
+
+  <!-- Soft background music -->
+  <!-- <audio id="bg-music" src="music.wav" loop preload="auto" autoplay></audio> -->
+  <button id="music-toggle" class="music-toggle is-playing" type="button"
+          aria-label="Toggle background music" aria-pressed="true">
+    <svg class="music-toggle__on" viewBox="0 0 24 24" width="20" height="20" fill="none"
+         stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+      <path d="M16.5 8.5a5 5 0 0 1 0 7"></path>
+      <path d="M19 6a8 8 0 0 1 0 12"></path>
+    </svg>
+    <svg class="music-toggle__off" viewBox="0 0 24 24" width="20" height="20" fill="none"
+         stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+      <line x1="16" y1="9" x2="21" y2="14"></line>
+      <line x1="21" y1="9" x2="16" y2="14"></line>
+    </svg>
+  </button>
 
   <!-- ===== Hero ===== -->
   <header class="hero">
@@ -106,14 +124,14 @@
     </section>
 
     <!-- ===== Gallery ===== -->
-    <section class="section gallery reveal" aria-label="Photo gallery">
+    <!-- <section class="section gallery reveal" aria-label="Photo gallery">
       <h2 class="section__title">Our moments</h2>
       <div class="gallery__grid">
-        <figure class="gallery__item"><img src="photo4.jpeg" alt="Watercolour portrait of the couple" loading="lazy" /></figure>
         <figure class="gallery__item"><img src="photo2.jpeg" alt="Illustrated portrait of the couple" loading="lazy" /></figure>
+        <figure class="gallery__item"><img src="photo4.jpeg" alt="Watercolour portrait of the couple" loading="lazy" /></figure>
         <figure class="gallery__item"><img src="photo3.jpeg" alt="Candid photo of the couple" loading="lazy" /></figure>
       </div>
-    </section>
+    </section> -->
   </main>
 
   <!-- ===== Footer ===== -->
