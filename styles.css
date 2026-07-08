@@ -129,19 +129,20 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__photo {
-  margin: 0 auto;
-  max-width: 340px;
-  padding: 12px;
-  background: #fff;
-  border: 1px solid rgba(201, 162, 75, 0.4);
-  border-radius: 6px;
-  box-shadow: 0 24px 60px -24px var(--shadow);
+  margin: -10px auto 0;
+  max-width: 460px;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
 }
 .hero__photo img {
-  border-radius: 3px;
   width: 100%;
   aspect-ratio: 3 / 4;
-  object-fit: cover;
+  object-fit: contain;
+  /* Feather the edges so the illustration blends into the page */
+  -webkit-mask-image: radial-gradient(ellipse 78% 82% at 50% 46%, #000 58%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(ellipse 78% 82% at 50% 46%, #000 58%, rgba(0, 0, 0, 0) 100%);
 }
 
 .hero__scroll {
