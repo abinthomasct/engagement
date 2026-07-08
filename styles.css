@@ -130,7 +130,7 @@ img { max-width: 100%; display: block; }
 
 .hero__photo {
   margin: 4px auto 0;
-  max-width: 500px;
+  max-width: 340px;
   padding: 0;
   background: none;
   border: 0;
@@ -236,7 +236,11 @@ img { max-width: 100%; display: block; }
   padding: 30px 20px;
   box-shadow: 0 16px 44px -32px var(--shadow);
 }
-.details__icon { font-size: 1.8rem; }
+.details__icon {
+  font-size: 1.8rem;
+  display: inline-flex;
+  color: var(--gold);
+}
 .details__heading {
   font-family: var(--serif);
   font-weight: 600;
