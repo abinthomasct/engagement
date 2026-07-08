@@ -76,24 +76,90 @@
     });
   }
 
-  // ===== Floating petals =====
+  // ===== Floating hearts =====
   var petalsWrap = document.querySelector(".petals");
   var reduceMotion =
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (petalsWrap && !reduceMotion) {
-    var COUNT = 12;
+    var COUNT = 18; // +50% more hearts than before
+    var tints = [
+      "var(--rose)",
+      "var(--rose-soft)",
+      "var(--rose)",
+      "var(--gold-soft)",
+    ];
     for (var i = 0; i < COUNT; i++) {
-      var petal = document.createElement("span");
-      var size = 6 + Math.random() * 10;
-      petal.style.left = Math.random() * 100 + "vw";
-      petal.style.width = size + "px";
-      petal.style.height = size + "px";
-      petal.style.animationDuration = 9 + Math.random() * 9 + "s";
-      petal.style.animationDelay = Math.random() * 10 + "s";
-      petal.style.opacity = 0.35 + Math.random() * 0.35;
-      petalsWrap.appendChild(petal);
+      var heart = document.createElement("span");
+      // Mix of sizes: ~40% larger hearts, the rest around the original size.
+      var size = Math.random() < 0.4
+        ? 18 + Math.random() * 14 // larger: 18-32px
+        : 8 + Math.random() * 10; // current-ish: 8-18px
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.width = size + "px";
+      heart.style.height = size + "px";
+      heart.style.background = tints[i % tints.length];
+      heart.style.animationDuration = 9 + Math.random() * 9 + "s";
+      heart.style.animationDelay = Math.random() * 10 + "s";
+      heart.style.opacity = 0.35 + Math.random() * 0.4;
+      petalsWrap.appendChild(heart);
     }
+  }
+
+  // ===== Background music =====
+  var audio = document.getElementById("bg-music");
+  var toggle = document.getElementById("music-toggle");
+
+  if (audio && toggle) {
+    audio.volume = 0.55;
+    var wantMusic = true;
+
+    function reflect() {
+      toggle.classList.toggle("is-playing", !audio.paused);
+      toggle.setAttribute("aria-pressed", audio.paused ? "false" : "true");
+    }
+
+    function tryPlay() {
+      if (!wantMusic) return;
+      var p = audio.play();
+      if (p && typeof p.then === "function") {
+        p.then(reflect).catch(function () {
+          // Autoplay blocked; wait for the first user gesture.
+        });
+      } else {
+        reflect();
+      }
+    }
+
+    // Attempt autoplay immediately.
+    tryPlay();
+
+    // Fallback: many browsers block autoplay until the user interacts.
+    var gestures = ["pointerdown", "touchstart", "keydown", "scroll"];
+    function onFirstGesture() {
+      tryPlay();
+      gestures.forEach(function (ev) {
+        window.removeEventListener(ev, onFirstGesture);
+      });
+    }
+    gestures.forEach(function (ev) {
+      window.addEventListener(ev, onFirstGesture, { passive: true });
+    });
+
+    toggle.addEventListener("click", function () {
+      if (audio.paused) {
+        wantMusic = true;
+        tryPlay();
+      } else {
+        wantMusic = false;
+        audio.pause();
+        reflect();
+      }
+    });
+
+    audio.addEventListener("play", reflect);
+    audio.addEventListener("pause", reflect);
+    reflect();
   }
 })();
